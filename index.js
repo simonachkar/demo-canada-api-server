@@ -10,7 +10,13 @@ app.use(express.json());
 
 // Load data from db.json
 const dbPath = path.join(__dirname, 'db.json');
-const data = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+let data;
+try {
+  data = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+} catch (error) {
+  console.error('Error reading db.json:', error.message);
+  process.exit(1);
+}
 
 // Routes
 app.get('/', (req, res) => {

@@ -42,8 +42,8 @@ const getBaseUrl = (req) => {
 };
 
 // Helper function to generate simple HTML page
-const generateSimpleHtmlPage = (title, items, type, baseUrl) => {
-  const itemsHtml = items.map(item => `
+const generateSimpleHtmlPage = (title, items, subtitle, baseUrl) => {
+  const cardsHtml = items.map(item => `
     <div class="card">
       <h3>${item.name}</h3>
       <p><strong>Capital:</strong> ${item.capital}</p>
@@ -150,7 +150,7 @@ const generateSimpleHtmlPage = (title, items, type, baseUrl) => {
     <body>
       <div class="header">
         <h1>🍁 ${title}</h1>
-        <p>Canadian ${type}</p>
+        <p>Canadian ${subtitle}</p>
       </div>
       
       <nav class="nav">
@@ -164,7 +164,7 @@ const generateSimpleHtmlPage = (title, items, type, baseUrl) => {
       
       <div class="container">
         <div class="cards">
-          ${itemsHtml}
+          ${cardsHtml}
         </div>
       </div>
       

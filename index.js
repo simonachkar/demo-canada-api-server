@@ -26,7 +26,19 @@ try {
 
 // Helper function to get base URL from request
 const getBaseUrl = (req) => {
-  return `${req.protocol}://${req.get('host')}`;
+  // Use X-Forwarded-Host if behind a proxy, otherwise use Host header
+  const host = req.get('x-forwarded-host') || req.get('host');
+  
+  // Validate host to prevent header injection
+  // Allow localhost with any port, and common domain patterns
+  const allowedHostPattern = /^(localhost|127\.0\.0\.1)(:\d+)?$|^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  
+  if (!host || !allowedHostPattern.test(host)) {
+    // Fallback to localhost if host is invalid
+    return `${req.protocol}://localhost:${PORT}`;
+  }
+  
+  return `${req.protocol}://${host}`;
 };
 
 // Routes

@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Ontario",
+    "capital": "Toronto",
+    "description": "Ontario is Canada's most populous province, home to the nation's capital Ottawa and its largest city Toronto. It is a major economic hub with diverse industries including finance, manufacturing, and technology.",
+    "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Ontario.svg",
+    "flagImage": "/flags/ontario.svg",
+    "flagDescription": "The flag features the Red Ensign with the Union Jack in the upper left and Ontario's coat of arms on the right. The coat of arms displays a shield with the cross of St. George and three golden maple leaves."
+  },
+  {
+    "name": "Quebec",
+    "capital": "Quebec City",
+    "description": "Quebec is Canada's largest province by area and the only one with French as its sole official language. It has a distinct culture and legal system based on civil law, and is known for its vibrant arts scene and historic architecture.",
+    "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Flag_of_Quebec.svg",
+    "flagImage": "/flags/quebec.svg",
+    "flagDescription": "The flag features a white cross on a blue field with four white fleurs-de-lis in each quarter. Known as the Fleurdelisé, it represents Quebec's French heritage and Catholic roots."
+  },
+  {
+    "name": "Nova Scotia",
+    "capital": "Halifax",
+    "description": "Nova Scotia is a Maritime province almost entirely surrounded by water, known for its seafood, coastal beauty, and Celtic heritage. Halifax, its capital, is a major Atlantic port and naval base with a rich maritime history.",
+    "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Flag_of_Nova_Scotia.svg",
+    "flagImage": "/flags/nova-scotia.svg",
+    "flagDescription": "The flag is a banner of arms featuring a blue saltire (X-shaped cross) on a white field with the Royal Arms of Scotland in the center. It was granted by King Charles I in 1625, making it one of the oldest flags in the Commonwealth."
+  },
+  {
+    "name": "New Brunswick",
+    "capital": "Fredericton",
+    "description": "New Brunswick is Canada's only officially bilingual province, with both English and French as official languages. It features diverse geography from coastal areas along the Bay of Fundy, which has the world's highest tides, to vast forests inland.",
+    "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Flag_of_New_Brunswick.svg",
+    "flagImage": "/flags/new-brunswick.svg",
+    "flagDescription": "The flag features a gold lion at the top representing New Brunswick's ties to Britain, and a Spanish galley ship below representing shipbuilding. The flag is based on the province's coat of arms granted in 1868."
+  },
+  {
+    "name": "Manitoba",
+    "capital": "Winnipeg",
+    "description": "Manitoba is a Prairie province known as the 'Gateway to the West,' with Winnipeg as a major transportation and distribution hub. The province has a diverse economy based on agriculture, mining, and manufacturing.",
+    "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Flag_of_Manitoba.svg",
+    "flagImage": "/flags/manitoba.svg",
+    "flagDescription": "The flag is a Red Ensign defaced with the shield of the provincial coat of arms. The shield features a buffalo standing on a rock, representing Manitoba's Indigenous heritage and natural resources."
+  },
+  {
+    "name": "British Columbia",
+    "capital": "Victoria",
+    "description": "British Columbia is Canada's westernmost province, known for its stunning natural beauty including mountains, forests, and coastline. It has a diverse economy driven by forestry, mining, film production, and technology.",
+    "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_British_Columbia.svg",
+    "flagImage": "/flags/british-columbia.svg",
+    "flagDescription": "The flag features a Union Jack on top and a setting sun over blue and white wavy bars representing the Pacific Ocean. The design symbolizes BC's British heritage and its position on Canada's Pacific coast."
+  },
+  {
+    "name": "Prince Edward Island",
+    "capital": "Charlottetown",
+    "description": "Prince Edward Island is Canada's smallest province by both land area and population, known for its red sandy beaches, rolling farmland, and as the birthplace of Canadian Confederation. The island is famous for potatoes and Anne of Green Gables.",
+    "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Flag_of_Prince_Edward_Island.svg",
+    "flagImage": "/flags/prince-edward-island.svg",
+    "flagDescription": "The flag features a golden lion at the top, representing the province's British heritage, and below it three oak saplings and a large oak tree representing England's three islands off the coast. The design is based on the provincial coat of arms."
+  },
+  {
+    "name": "Saskatchewan",
+    "capital": "Regina",
+    "description": "Saskatchewan is a Prairie province known as Canada's 'breadbasket' due to its vast wheat production and agricultural industry. The province has a strong economy based on agriculture, mining, and energy production.",
+    "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Flag_of_Saskatchewan.svg",
+    "flagImage": "/flags/saskatchewan.svg",
+    "flagDescription": "The flag features the provincial shield on a green field with a western red lily, the provincial flower. The upper half is green representing the forests, while the lower half is gold representing the wheat fields."
+  },
+  {
+    "name": "Alberta",
+    "capital": "Edmonton",
+    "description": "Alberta is a western Prairie province known for its energy industry, particularly oil and natural gas, and stunning Rocky Mountain landscapes. It has no provincial sales tax and is home to major cities Calgary and Edmonton.",
+    "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Flag_of_Alberta.svg",
+    "flagImage": "/flags/alberta.svg",
+    "flagDescription": "The flag is a blue field charged with the provincial shield showing a St. George's Cross at the top, representing England, with mountains, foothills, prairie, and wheat fields below. The shield represents Alberta's diverse geography."
+  },
+  {
+    "name": "Newfoundland and Labrador",
+    "capital": "St. John's",
+    "description": "Newfoundland and Labrador is Canada's easternmost province, consisting of the island of Newfoundland and mainland Labrador. It was the last province to join Canada in 1949 and is known for its unique culture, dialect, and rich fishing heritage.",
+    "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Newfoundland_and_Labrador.svg",
+    "flagImage": "/flags/newfoundland-and-labrador.svg",
+    "flagDescription": "The flag features a stylized representation of a golden arrow pointing forward (representing confidence in the future) with two red triangles and white triangles. The colors represent human effort (red), snow and ice (white), and confidence (gold)."
+  }
+]

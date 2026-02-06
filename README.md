@@ -18,9 +18,14 @@ The server will start on port 3000 by default (or the port specified in the `POR
 
 ## API Endpoints
 
+### Web Interface (HTML)
 - `GET /` - Interactive home page with clickable links to all endpoints
-- `GET /provinces` - Get all Canadian provinces with detailed information
-- `GET /territories` - Get all Canadian territories with detailed information  
+- `GET /provinces/html` - View all Canadian provinces in a formatted HTML page
+- `GET /territories/html` - View all Canadian territories in a formatted HTML page
+
+### JSON API
+- `GET /provinces` - Get all Canadian provinces as JSON
+- `GET /territories` - Get all Canadian territories as JSON  
 - `GET /health` - Health check endpoint for monitoring
 
 ## Data Structure
@@ -36,11 +41,17 @@ Each province and territory includes:
 ## Example Usage
 
 ```bash
-# Get all provinces
+# Get all provinces as JSON
 curl http://localhost:3000/provinces
 
-# Get all territories
+# Get all territories as JSON
 curl http://localhost:3000/territories
+
+# View provinces in browser
+open http://localhost:3000/provinces/html
+
+# View territories in browser
+open http://localhost:3000/territories/html
 
 # Check API health
 curl http://localhost:3000/health
@@ -59,5 +70,8 @@ Province and territory data are stored separately in:
 - 🏴 Flag descriptions and imagery
 - 💚 Health check endpoint for monitoring
 - 🎨 Beautiful, interactive web interface
+- 📄 Dual format support: HTML pages and JSON API
+- 🧭 Easy navigation between all endpoints
 - 📦 Separate JSON data files for easy maintenance
+- 🔒 Host header validation for security
 

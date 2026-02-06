@@ -4,7 +4,6 @@
     "capital": "Yellowknife",
     "description": "The Northwest Territories is a federal territory in northern Canada, known for its vast wilderness, diamond mines, and the spectacular Northern Lights. It has 11 official languages, the most of any jurisdiction in Canada.",
     "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Flag_of_the_Northwest_Territories.svg",
-    "flagImage": "/flags/northwest-territories.svg",
     "flagDescription": "The flag features a blue field with the territorial shield, which displays a white wavy stripe representing the Northwest Passage, and a diagonal line representing the treeline. The top section shows a fox mask, and the lower sections display minerals and trees."
   },
   {
@@ -12,7 +11,6 @@
     "capital": "Whitehorse",
     "description": "Yukon is the westernmost and smallest of Canada's three territories, famous for the Klondike Gold Rush of the 1890s. The territory is known for its rugged wilderness, midnight sun in summer, and vibrant Indigenous cultures.",
     "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/Flag_of_Yukon.svg",
-    "flagImage": "/flags/yukon.svg",
     "flagDescription": "The flag features three vertical panels (green, white, and blue) representing the forests, snow, and waters of Yukon. The coat of arms in the center includes a cross of St. George, a red roundel, and a malamute dog, symbolizing the territory's heritage."
   },
   {
@@ -20,7 +18,6 @@
     "capital": "Iqaluit",
     "description": "Nunavut is Canada's newest, largest, and northernmost territory, created in 1999 through the division of the Northwest Territories. It has a predominantly Inuit population and four official languages, with Inuktitut being the most widely spoken.",
     "flagUrl": "https://upload.wikimedia.org/wikipedia/commons/9/90/Flag_of_Nunavut.svg",
-    "flagImage": "/flags/nunavut.svg",
     "flagDescription": "The flag features a red inuksuk (stone landmark) and a blue star representing the North Star, which has traditionally guided navigation. The colors blue and gold represent the riches of the land, sea, and sky."
   }
 ]

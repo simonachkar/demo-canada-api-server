@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canada API - Provinces & Territories</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+    }
+    .header {
+      background: #2c3e50;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    .header h1 {
+      margin-bottom: 0.5rem;
+    }
+    .nav {
+      background: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .nav a, .nav button {
+      color: #2c3e50;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background 0.3s;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .nav a:hover, .nav button:hover {
+      background: #ecf0f1;
+    }
+    .nav button.active {
+      background: #3498db;
+      color: white;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .card h3 {
+      color: #2c3e50;
+      margin-bottom: 0.75rem;
+      font-size: 1.5rem;
+    }
+    .card p {
+      margin-bottom: 0.75rem;
+      color: #555;
+    }
+    .card .description {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+    }
+    .card .flag-description {
+      font-size: 0.9rem;
+      color: #666;
+      font-style: italic;
+      margin-top: 1rem;
+    }
+    .card img {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      margin: 1rem 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+      margin-top: 3rem;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🍁 Canadian Provinces & Territories</h1>
+    <p>Explore Canada's provinces and territories</p>
+  </div>
+  
+  <nav class="nav">
+    <a href="/">Home</a>
+    <button id="btn-all" class="active" onclick="filterData('all')">All</button>
+    <button id="btn-provinces" onclick="filterData('provinces')">Provinces</button>
+    <button id="btn-territories" onclick="filterData('territories')">Territories</button>
+    <a href="/health">Health Check</a>
+  </nav>
+  
+  <div class="container">
+    <div id="cards-container" class="cards"></div>
+  </div>
+  
+  <div class="footer">
+    <p>Powered by Express.js | Canada API</p>
+  </div>
+
+  <script>
+    const data = {{DATA}};
+    
+    function filterData(type) {
+      const buttons = document.querySelectorAll('.nav button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`btn-${type}`).classList.add('active');
+      
+      const container = document.getElementById('cards-container');
+      let items = [];
+      
+      if (type === 'all') {
+        items = [...data.provinces, ...data.territories];
+      } else if (type === 'provinces') {
+        items = data.provinces;
+      } else if (type === 'territories') {
+        items = data.territories;
+      }
+      
+      container.innerHTML = items.map(item => `
+        <div class="card">
+          <h3>${item.name}</h3>
+          <p><strong>Capital:</strong> ${item.capital}</p>
+          ${item.flagUrl ? `<img src="${item.flagUrl}" alt="${item.name} flag" onerror="this.style.display='none'">` : ''}
+          <p class="description">${item.description}</p>
+          <p class="flag-description"><strong>Flag:</strong> ${item.flagDescription}</p>
+        </div>
+      `).join('');
+    }
+    
+    // Initialize with all data
+    filterData('all');
+  </script>
+</body>
+</html>

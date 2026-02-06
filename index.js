@@ -8,9 +8,6 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 
-// Serve static files from db/flags directory
-app.use('/flags', express.static(path.join(__dirname, 'db/flags')));
-
 // Load data from separate JSON files
 let provinces, territories;
 try {
@@ -24,159 +21,22 @@ try {
   process.exit(1);
 }
 
+// Load HTML template
+const htmlTemplate = fs.readFileSync(path.join(__dirname, 'ui.html'), 'utf8');
+
 // Helper function to get base URL from request
 const getBaseUrl = (req) => {
-  // Use X-Forwarded-Host if behind a proxy, otherwise use Host header
   const host = req.get('x-forwarded-host') || req.get('host');
-  
-  // Validate host to prevent header injection
-  // Allow localhost with any port, and common domain patterns
   const allowedHostPattern = /^(localhost|127\.0\.0\.1)(:\d+)?$|^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   
   if (!host || !allowedHostPattern.test(host)) {
-    // Fallback to localhost if host is invalid
     return `${req.protocol}://localhost:${PORT}`;
   }
   
   return `${req.protocol}://${host}`;
 };
 
-// Helper function to generate simple HTML page
-const generateSimpleHtmlPage = (title, items, subtitle, baseUrl) => {
-  const cardsHtml = items.map(item => `
-    <div class="card">
-      <h3>${item.name}</h3>
-      <p><strong>Capital:</strong> ${item.capital}</p>
-      <p class="description">${item.description}</p>
-      <p class="flag-description"><strong>Flag:</strong> ${item.flagDescription}</p>
-    </div>
-  `).join('');
-
-  return `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>${title} - Canada API</title>
-      <style>
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        body {
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-          line-height: 1.6;
-          color: #333;
-          background: #f5f5f5;
-        }
-        .header {
-          background: #2c3e50;
-          color: white;
-          padding: 2rem;
-          text-align: center;
-        }
-        .header h1 {
-          margin-bottom: 0.5rem;
-        }
-        .nav {
-          background: white;
-          padding: 1rem 2rem;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-          display: flex;
-          gap: 1rem;
-          flex-wrap: wrap;
-        }
-        .nav a {
-          color: #2c3e50;
-          text-decoration: none;
-          padding: 0.5rem 1rem;
-          border-radius: 4px;
-          transition: background 0.3s;
-        }
-        .nav a:hover {
-          background: #ecf0f1;
-        }
-        .container {
-          max-width: 1200px;
-          margin: 2rem auto;
-          padding: 0 2rem;
-        }
-        .cards {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: 1.5rem;
-          margin-top: 2rem;
-        }
-        .card {
-          background: white;
-          padding: 1.5rem;
-          border-radius: 8px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-          transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .card h3 {
-          color: #2c3e50;
-          margin-bottom: 0.75rem;
-          font-size: 1.5rem;
-        }
-        .card p {
-          margin-bottom: 0.75rem;
-          color: #555;
-        }
-        .card .description {
-          margin-top: 1rem;
-          padding-top: 1rem;
-          border-top: 1px solid #eee;
-        }
-        .card .flag-description {
-          font-size: 0.9rem;
-          color: #666;
-          font-style: italic;
-        }
-        .footer {
-          text-align: center;
-          padding: 2rem;
-          color: #666;
-          margin-top: 3rem;
-        }
-      </style>
-    </head>
-    <body>
-      <div class="header">
-        <h1>🍁 ${title}</h1>
-        <p>Canadian ${subtitle}</p>
-      </div>
-      
-      <nav class="nav">
-        <a href="${baseUrl}/">Home</a>
-        <a href="${baseUrl}/provinces/html">Provinces (HTML)</a>
-        <a href="${baseUrl}/territories/html">Territories (HTML)</a>
-        <a href="${baseUrl}/provinces">Provinces (JSON)</a>
-        <a href="${baseUrl}/territories">Territories (JSON)</a>
-        <a href="${baseUrl}/health">Health Check</a>
-      </nav>
-      
-      <div class="container">
-        <div class="cards">
-          ${cardsHtml}
-        </div>
-      </div>
-      
-      <div class="footer">
-        <p>Powered by Express.js | Canada API</p>
-      </div>
-    </body>
-    </html>
-  `;
-};
-
-// Routes
+// Home route
 app.get('/', (req, res) => {
   const baseUrl = getBaseUrl(req);
   res.send(`
@@ -255,23 +115,18 @@ app.get('/', (req, res) => {
         <p class="subtitle">Explore information about Canadian provinces and territories</p>
         
         <div class="endpoints">
-          <a href="${baseUrl}/provinces/html" class="endpoint">
-            <div class="endpoint-title">📍 Provinces (HTML)</div>
-            <div class="endpoint-path">GET ${baseUrl}/provinces/html</div>
-          </a>
-          
-          <a href="${baseUrl}/territories/html" class="endpoint">
-            <div class="endpoint-title">🏔️ Territories (HTML)</div>
-            <div class="endpoint-path">GET ${baseUrl}/territories/html</div>
+          <a href="${baseUrl}/ui" class="endpoint">
+            <div class="endpoint-title">🌐 View All (HTML)</div>
+            <div class="endpoint-path">GET ${baseUrl}/ui</div>
           </a>
           
           <a href="${baseUrl}/provinces" class="endpoint">
-            <div class="endpoint-title">📄 Provinces (JSON)</div>
+            <div class="endpoint-title">📍 Provinces (JSON)</div>
             <div class="endpoint-path">GET ${baseUrl}/provinces</div>
           </a>
           
           <a href="${baseUrl}/territories" class="endpoint">
-            <div class="endpoint-title">📄 Territories (JSON)</div>
+            <div class="endpoint-title">🏔️ Territories (JSON)</div>
             <div class="endpoint-path">GET ${baseUrl}/territories</div>
           </a>
           
@@ -288,6 +143,13 @@ app.get('/', (req, res) => {
     </body>
     </html>
   `);
+});
+
+// UI route - HTML view with filtering
+app.get('/ui', (req, res) => {
+  const data = JSON.stringify({ provinces, territories });
+  const html = htmlTemplate.replace('{{DATA}}', data);
+  res.send(html);
 });
 
 // Health check endpoint
@@ -307,19 +169,6 @@ app.get('/provinces', (req, res) => {
 
 app.get('/territories', (req, res) => {
   res.json(territories);
-});
-
-// HTML endpoints
-app.get('/provinces/html', (req, res) => {
-  const baseUrl = getBaseUrl(req);
-  const html = generateSimpleHtmlPage('Canadian Provinces', provinces, 'Provinces', baseUrl);
-  res.send(html);
-});
-
-app.get('/territories/html', (req, res) => {
-  const baseUrl = getBaseUrl(req);
-  const html = generateSimpleHtmlPage('Canadian Territories', territories, 'Territories', baseUrl);
-  res.send(html);
 });
 
 // Start server

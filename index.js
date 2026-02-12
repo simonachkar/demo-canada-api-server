@@ -1,6 +1,4 @@
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
 const lib = require('./lib');
 
 const app = express();
@@ -10,24 +8,15 @@ const PORT = process.env.PORT || 3003;
 app.use(express.json());
 
 // Load data from separate JSON files
-let provinces, territories;
-try {
-  const provincesPath = path.join(__dirname, 'db/provinces.json');
-  const territoriesPath = path.join(__dirname, 'db/territories.json');
-
-  provinces = JSON.parse(fs.readFileSync(provincesPath, 'utf8'));
-  territories = JSON.parse(fs.readFileSync(territoriesPath, 'utf8'));
-} catch (error) {
-  console.error('Error reading data files:', error.message);
-  process.exit(1);
-}
+let provinces = lib.getData('db/provinces.json');
+let territories = lib.getData('db/territories.json');
 
 // Home route
 app.get('/', (req, res) => {
   const baseUrl = lib.getBaseUrl(req);
   res.json({
     message: 'Canada API - Provinces and Territories',
-    version: '1.0.0',
+    version: '1.0.1',
     endpoints: {
       provinces: `${baseUrl}/provinces`,
       territories: `${baseUrl}/territories`,
@@ -46,7 +35,7 @@ app.get('/health', (req, res) => {
   });
 });
 
-// JSON endpoints
+// Data endpoints
 app.get('/provinces', (req, res) => {
   res.json(provinces);
 });
